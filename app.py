@@ -13,23 +13,22 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    temp_row = pd.read_excel('sample_1.xlsx')
-    features = list([(x) for x in request.form.values()])
+    int_features = [0] * 327
+    features = list([x for x in request.form.values()])
     featurevalues = features[0:10]
     feature_values = features[10:]
 
-    try:
-        for i in featurevalues:
-            temp_row.iat[0,int(i)]=1
-    except:
-        pass
+    featurevalues = [int(s) for s in featurevalues if s.isdigit()]
     
-    temp_row.at[0, 'sqfeet'] = feature_values[0]
-    temp_row.at[0, 'beds'] = feature_values[1]
-    temp_row.at[0, 'baths'] = float(feature_values[2])
+    for x in featurevalues:
+        int_features[x]=1
+    
+    int_features[0] = int(feature_values[0])
+    int_features[1] = int(feature_values[1])
+    int_features[2] = float(feature_values[2])
 
-    prediction = model.predict(temp_row)
-    prediction2 = model2.predict(temp_row)
+    prediction = model.predict([int_features])
+    prediction2 = model2.predict([int_features])
     avgprediction = (prediction + prediction2)/2
     output = round(avgprediction[0], 2)
 
