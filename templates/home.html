@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>House Rent Prediction</title>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+*{
+  box-sizing: border-box;
+}
+body{
+    overflow-y : auto;
+}
+/* Create two equal columns that floats next to each other */
+.column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+}
+
+* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+</style>
+</head>
+
+<body>
+  <h1>Enter details of the residence</h1>
+  <div class="row">
+    <div class="column">
+        <div class="login1">
+          <form action="{{url_for('predict')}}" class="ordinary_form" method="post">
+            <h3>Please select the region</h3>
+            <select required name= 'tvalue1_1'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=3>SF Bay area</option>
+              <option value=4>Akron / canton</option>
+              <option value=5>Albany</option>
+              <option value=6>Albuquerque</option>
+              <option value=7>Ames</option>
+              <option value=8>Anchorage / mat-su</option>
+              <option value=9>Ann arbor</option>
+              <option value=10>Annapolis</option>
+              <option value=11>Asheville</option>
+              <option value=12>Ashtabula</option>
+              <option value=13>Athens</option>
+              <option value=14>Atlanta</option>
+              <option value=15>Augusta</option>
+              <option value=16>Bakersfield</option>
+              <option value=17>Baltimore</option>
+              <option value=18>Baton rouge</option>
+              <option value=19>Battle creek</option>
+              <option value=20>Bemidji</option>
+              <option value=21>Bend</option>
+              <option value=22>Billings</option>
+              <option value=23>Binghamton</option>
+              <option value=24>Birmingham</option>
+              <option value=25>Bismarck</option>
+              <option value=26>Bloomington</option>
+              <option value=27>Bloomington-normal</option>
+              <option value=28>Boise</option>
+              <option value=29>Boone</option>
+              <option value=30>Boston</option>
+              <option value=31>Boulder</option>
+              <option value=32>Bowling green</option>
+              <option value=33>Bozeman</option>
+              <option value=34>Brainerd</option>
+              <option value=35>Brunswick</option>
+              <option value=36>Buffalo</option>
+              <option value=37>Butte</option>
+              <option value=38>Cape cod / islands</option>
+              <option value=39>Catskills</option>
+              <option value=40>Cedar rapids</option>
+
+              <option value=41>Central Louisiana</option>
+              <option value=42>Central Michigan</option>
+              <option value=43>Central NJ</option>
+
+              <option value=44>Champaign urbana</option>
+              <option value=45>Charlotte</option>
+              <option value=46>Chautauqua</option>
+              <option value=47>Chicago</option>
+              <option value=48>Chico</option>
+              <option value=49>Chillicothe</option>
+              <option value=50>Cincinnati</option>
+              <option value=51>Cleveland</option>
+              <option value=52>Clovis / portales</option>
+              <option value=53>Colorado springs</option>
+              <option value=54>Columbia / jeff city</option>
+              <option value=55>Columbus</option>
+              <option value=56>Corvallis/albany</option>
+              <option value=57>Cumberland valley</option>
+              <option value=58>Dayton / springfield</option>
+              <option value=59>Daytona beach</option>
+              <option value=60>Decatur</option>
+              <option value=61>Delaware</option>
+              <option value=62>Denver</option>
+              <option value=63>Des moines</option>
+              <option value=64>Detroit metro</option>
+              <option value=65>Dothan</option>
+              <option value=66>Dubuque</option>
+              <option value=67>Duluth / superior</option>
+              <option value=68>East idaho</option>
+              <option value=69>East oregon</option>
+              <option value=70>Eastern co</option>
+              <option value=71>Eastern ct</option>
+
+              <option value=72>Eastern nc</option>
+              <option value=73>Eastern Kentucky</option>
+              <option value=74>Eastern Montana</option>
+
+              <option value=75>Eastern shore</option>
+              <option value=76>Elko</option>
+              <option value=77>Elmira-corning</option>
+              <option value=78>Eugene</option>
+              <option value=79>Evansville</option>
+              <option value=80>Fairbanks</option>
+              <option value=81>Fargo / moorhead</option>
+              <option value=82>Farmington</option>
+              <option value=83>Fayetteville</option>
+              <option value=84>Finger lakes</option>
+              <option value=85>Flagstaff / sedona</option>
+              <option value=86>Flint</option>
+              <option value=87>Florence / muscle shoals</option>
+              <option value=88>Florida keys</option>
+              <option value=89>Fort collins / north co</option>
+              <option value=90>Fort dodge</option>
+              <option value=91>Fort smith</option>
+              <option value=92>Fort wayne</option>
+              <option value=93>Frederick</option>
+              <option value=94>Fresno / madera</option>
+              <option value=95>Ft myers / sw florida</option>
+              <option value=96>Gadsden-anniston</option>
+              <option value=97>Gainesville</option>
+              <option value=98>Glens falls</option>
+              <option value=99>Gold country</option>
+              <option value=100>Grand forks</option>
+              <option value=101>Grand island</option>
+              <option value=102>Grand rapids</option>
+              <option value=103>Great falls</option>
+              <option value=104>Greensboro</option>
+              <option value=105>Gulfport / biloxi</option>
+              <option value=106>Hanford-corcoran</option>
+              <option value=107>Hartford</option>
+              <option value=108>Hattiesburg</option>
+              <option value=109>Hawaii</option>
+              <option value=110>Heartland florida</option>
+              <option value=111>Helena</option>
+              <option value=112>Hickory / lenoir</option>
+              <option value=113>High rockies</option>
+              <option value=114>Holland</option>
+              <option value=115>Houma</option>
+              <option value=116>Hudson valley</option>
+              <option value=117>Humboldt county</option>
+              <option value=118>Huntington-ashland</option>
+              <option value=119>Huntsville / decatur</option>
+              <option value=120>Imperial county</option>
+              <option value=121>Indianapolis</option>
+              <option value=122>Inland empire</option>
+              <option value=123>Iowa city</option>
+              <option value=124>Ithaca</option>
+              <option value=125>Jackson</option>
+              <option value=126>Jacksonville</option>
+              <option value=127>Jersey shore</option>
+              <option value=128>Jonesboro</option>
+              <option value=129>Joplin</option>
+              <option value=130>Kalamazoo</option>
+              <option value=131>Kalispell</option>
+              <option value=132>Kansas city</option>
+              <option value=133>Kansas city, mo</option>
+              <option value=134>Kenai peninsula</option>
+              <option value=135>Kirksville</option>
+              <option value=136>Kokomo</option>
+              <option value=137>La salle co</option>
+              <option value=138>Lafayette</option>
+              <option value=139>Lafayette / west lafayette</option>
+              <option value=140>Lake charles</option>
+              <option value=141>Lake of the ozarks</option>
+              <option value=142>Lakeland</option>
+              <option value=143>Lansing</option>
+              <option value=144>Las cruces</option>
+              <option value=145>Las vegas</option>
+              <option value=146>Lawrence</option>
+              <option value=147>Lawton</option>
+              <option value=148>Lewiston / clarkston</option>
+              <option value=149>Lexington</option>
+              <option value=150>Lima / findlay</option>
+              <option value=151>Lincoln</option>
+              <option value=152>Little rock</option>
+              <option value=153>Long island</option>
+              <option value=154>Los angeles</option>
+              <option value=155>Louisville</option>
+              <option value=156>Macon / warner robins</option>
+              <option value=157>Maine</option>
+              <option value=158>Manhattan</option>
+              <option value=159>Mankato</option>
+              <option value=160>Mansfield</option>
+              <option value=161>Mason city</option>
+              <option value=162>Mattoon-charleston</option>
+              <option value=163>Medford-ashland</option>
+              <option value=164>Mendocino county</option>
+              <option value=165>Merced</option>
+              <option value=166>Meridian</option>
+              <option value=167>Minneapolis / st paul</option>
+              <option value=168>Missoula</option>
+              <option value=169>Mobile</option>
+              <option value=170>Modesto</option>
+              <option value=171>Mohave county</option>
+              <option value=172>Monroe</option>
+              <option value=173>Monterey bay</option>
+              <option value=174>Montgomery</option>
+              <option value=175>Muncie / anderson</option>
+              <option value=176>Muskegon</option>
+              <option value=177>New hampshire</option>
+              <option value=178>New haven</option>
+              <option value=179>New orleans</option>
+              <option value=180>New york city</option>
+              <option value=181>North central fl</option>
+              <option value=182>North dakota</option>
+              <option value=183>North jersey</option>
+              <option value=184>North mississippi</option>
+              <option value=185>North platte</option>
+              <option value=186>Northern michigan</option>
+              <option value=187>Northern panhandle</option>
+              <option value=188>Northwest ct</option>
+              <option value=189>Northwest ga</option>
+              <option value=190>Northwest ks</option>
+              <option value=191>Northwest ok</option>
+              <option value=192>Ocala</option>
+              <option value=193>Okaloosa / walton</option>
+              <option value=194>Oklahoma city</option>
+              <option value=195>Omaha / council bluffs</option>
+              <option value=196>Oneonta</option>
+              <option value=197>Orange county</option>
+              <option value=198>Oregon coast</option>
+              <option value=199>Orlando</option>
+              <option value=200>Outer banks</option>
+              <option value=201>Owensboro</option>
+              <option value=202>Palm springs</option>
+              <option value=203>Panama city</option>
+              <option value=204>Parkersburg-marietta</option>
+              <option value=205>Pensacola</option>
+              <option value=206>Peoria</option>
+              <option value=207>Phoenix</option>
+              <option value=208>Plattsburgh-adirondacks</option>
+              <option value=209>Port huron</option>
+              <option value=210>Portland</option>
+              <option value=211>Potsdam-canton-massena</option>
+              <option value=212>Prescott</option>
+              <option value=213>Pueblo</option>
+              <option value=214>Pullman / moscow</option>
+              <option value=215>Quad cities, ia/il</option>
+              <option value=216>Raleigh / durham / ch</option>
+              <option value=217>Redding</option>
+              <option value=218>Reno / tahoe</option>
+              <option value=219>Richmond</option>
+              <option value=220>Rochester</option>
+              <option value=221>Rockford</option>
+              <option value=222>Roswell / carlsbad</option>
+              <option value=223>Sacramento</option>
+              <option value=224>Saginaw-midland-baycity</option>
+              <option value=225>Salina</option>
+              <option value=226>San diego</option>
+              <option value=227>San luis obispo</option>
+              <option value=228>Santa barbara</option>
+              <option value=229>Santa fe / taos</option>
+              <option value=230>Santa maria</option>
+              <option value=231>Sarasota-bradenton</option>
+              <option value=232>Savannah / hinesville</option>
+              <option value=233>Scottsbluff / panhandle</option>
+
+              <option value=234>Show low</option>
+              <option value=235>Shreveport</option>
+              <option value=236>Sierra vista</option>
+              <option value=237>Sioux city</option>
+              <option value=238>Siskiyou county</option>
+              <option value=239>South bend / michiana</option>
+              <option value=240>South coast</option>
+              <option value=241>South florida</option>
+              <option value=242>South jersey</option>
+
+              <option value=243>Southeast IA</option>
+              <option value=244>Southeast KS</option>
+              <option value=245>Southeast Alaska</option>
+
+              <option value=246>Southeast missouri</option>
+              <option value=247>Southern illinois</option>
+              <option value=248>Southern maryland</option>
+              <option value=249>Southwest KS</option>
+
+              <option value=250>Southwest MN</option>
+              <option value=251>Southwest MS</option>
+              <option value=252>Southwest Michigan</option>
+
+              <option value=253>Space coast</option>
+              <option value=254>Spokane / coeur d'alene</option>
+              <option value=255>Springfield</option>
+              <option value=256>St augustine</option>
+              <option value=257>St cloud</option>
+              <option value=258>St joseph</option>
+              <option value=259>St louis</option>
+              <option value=260>St louis, mo</option>
+              <option value=261>Statesboro</option>
+              <option value=262>Stillwater</option>
+              <option value=263>Stockton</option>
+              <option value=264>Susanville</option>
+              <option value=265>Syracuse</option>
+              <option value=266>Tallahassee</option>
+              <option value=267>Tampa bay area</option>
+              <option value=268>Terre haute</option>
+              <option value=269>Texarkana</option>
+              <option value=270>Texoma</option>
+              <option value=271>The thumb</option>
+              <option value=272>Toledo</option>
+              <option value=273>Topeka</option>
+              <option value=274>Treasure coast</option>
+              <option value=275>Tucson</option>
+              <option value=276>Tulsa</option>
+              <option value=277>Tuscaloosa</option>
+              <option value=278>Tuscarawas co</option>
+              <option value=279>Twin falls</option>
+              <option value=280>Twin tiers ny/pa</option>
+              <option value=281>Upper peninsula</option>
+              <option value=282>Utica-rome-oneida</option>
+              <option value=283>Valdosta</option>
+              <option value=284>Ventura county</option>
+              <option value=285>Visalia-tulare</option>
+              <option value=286>Washington, dc</option>
+              <option value=287>Waterloo / cedar falls</option>
+              <option value=288>Watertown</option>
+              <option value=289>Western il</option>
+              <option value=290>Western ky</option>
+              <option value=291>Western maryland</option>
+              <option value=292>Western massachusetts</option>
+              <option value=293>Western slope</option>
+              <option value=294>Wichita</option>
+              <option value=295>Wilmington</option>
+              <option value=296>Winston-salem</option>
+              <option value=297>Worcester / central ma</option>
+              <option value=298>Yuba-sutter</option>
+              <option value=299>Yuma</option>
+              <option value=>Zanesville / cambridge</option>
+            </select><br>
+            <!--<h3>Please select the state</h3>
+            <select required name= 'tvalue1_2'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=321></option>Alaska</option>
+              <option value=322>Alabama</option>
+              <option value=323>Arkansas</option>
+              <option value=324>Arizona</option>
+              <option value=325>California</option>
+              <option value=326>Colorado</option>
+              <option value=327>Connecticut</option>
+              <option value=328>District of Columbia</option>
+              <option value=329>Delaware</option>
+              <option value=330>Florida</option>
+              <option value=331>Georgia</option>
+              <option value=332>Hawaii</option>
+              <option value=333>Iowa</option>
+              <option value=334>Idaho</option>
+              <option value=335>Illinois</option>
+              <option value=336>Indiana</option>
+              <option value=337>Kansas</option>
+              <option value=338>Kentucky</option>
+              <option value=339>Louisiana</option>
+              <option value=340>Massachusetts</option>
+              <option value=341>Maryland</option>
+              <option value=342>Maine</option>
+              <option value=343>Michigan</option>
+              <option value=344>Minnesota</option>
+              <option value=345>Missouri</option>
+              <option value=346>Mississippi</option>
+              <option value=347>Montana</option>
+              <option value=348>North Carolina</option>
+              <option value=349>North Dakota</option>
+              <option value=350>Nebraska</option>
+              <option value=351>New Hampshire</option>
+              <option value=352>New Jersey</option>
+              <option value=353>New Mexico</option>
+              <option value=354>Nevada</option>
+              <option value=355>New York</option>
+              <option value=356>Ohio</option>
+              <option value=357>Oklahoma</option>
+              <option value=>Oregon</option>
+            </select><br>-->
+            <h3>Are cats allowed?</h3>
+            <select required name= 'tvalue1_6'>
+              <option value="" disabled selected hidden>Please choose your hero...</option>
+              <option value=321>Yes</option>
+              <option value=>No</option>
+            </select><br>
+            <h3>Are dogs allowed?</h3>
+            <select required name= 'tvalue1_7'>
+              <option value="" disabled selected hidden>Please secect an option...</option>
+              <option value=322>Yes</option>
+              <option value=>No</option>
+            </select><br>
+            <h3>Please select the type</h3>
+            <select required name= 'tvalue1_3'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=300>Apartment</option>
+              <option value=301>Assisted living</option>
+              <option value=302>Condo</option>
+              <option value=303>Cottage/cabin</option>
+              <option value=304>Duplex</option>
+              <option value=305>Flat</option>
+              <option value=306>House</option>
+              <option value=307>In-law</option>
+              <option value=308>Land</option>
+              <option value=309>Loft</option>
+              <option value=310>Manufactured</option>
+              <option value=>Townhouse</option>
+            </select><br>
+            <h3>Is it in a furnished state?</h3>
+            <select required name= 'tvalue1_11'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=327>Yes</option>
+              <option value=>No</option>
+            </select><br>
+            <h3>Is smoking allowed?</h3>
+            <select required name= 'tvalue1_8'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=323>Yes</option>
+              <option value=>No</option>
+            </select><br>
+            <h3>Is wheelchair accessibility available?</h3>
+            <select required name= 'tvalue1_9'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=324>Yes</option>
+              <option value=>No</option>
+            </select><br>
+            <style>
+              select:invalid { color: gray; }
+            </style>          
+        </div>
+    </div>
+    <div class="column">
+        <div class="login1"> 
+            <h3>Electric vehicle charging facility available?</h3>
+            <select required name= 'tvalue1_10'>
+              <option value="" disabled selected hidden>Please select an option...</option>
+              <option value=325>Yes</option>
+              <option value=>No</option>
+            </select><br>
+            <h3>Please select the laundary option available</h3>
+            <select required name= 'tvalue1_4'>
+              <option value="" disabled selected hidden>Please choose your hero...</option>
+              <option value=311>Laundry in bldg</option>
+              <option value=312>Laundry on site</option>
+              <option value=313>No laundry on site</option>
+              <option value=314>W/d hookups</option>
+              <option value=>W/d in unit</option>
+            </select><br>
+            <h3>Please select the parking option available</h3>
+            <select required name= 'tvalue1_5'>
+              <option value="" disabled selected hidden>Please choose your hero...</option>
+              <option value=315>Attached garage</option>
+              <option value=316>Carport</option>
+              <option value=317>Detached garage</option>
+              <option value=318>No parking</option>
+              <option value=319>Off-street parking</option>
+              <option value=320>Street parking</option>
+              <option value=>Valet parking</option>
+            </select><br>
+            <h3>Area in square feet</h3>
+            <input type="number" name='tvalue1_14' title="Title" placeholder="Please enter a number" min="1" required/><br>
+            <h3>Number of beds</h3>
+            <input type="number" name='tvalue1_12' title="Title" placeholder="Please enter a number" min="1" required/><br>
+            <h3>Number of baths</h3>
+            <input type="number" name='tvalue1_13' step="0.5" title="Title" placeholder="Please enter a number" min="0.5" required/><br>
+            <p style="margin-top:0.5cm;">
+            <button type="submit" class="btn btn-primary btn-large">Predict</button>
+            </p>           
+          </form>
+        </div>
+    </div>
+    <p style="margin-top:-0.5cm;">
+    {{prediction_text}}
+    </p>
+  </div>
+</body>
+</html>
