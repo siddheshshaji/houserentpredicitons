@@ -1,3 +1,3 @@
-Google drive link for all the documentation and explanation in detail about the project :- https://drive.google.com/drive/folders/1Jf6nRytWepSuU2X4nobkQrxGwSpJRTjn?usp=sharing
+House Rent Predictor Model 
 
-Deployed Project URL :- https://houserent.azurewebsites.net/
+Google drive link for all the documentation and explanation in detail about the project :- https://drive.google.com/drive/folders/1F1Koyp1yKnC9y3fugxEQGA7HyOOIa2IF?usp=sharing
